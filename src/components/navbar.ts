@@ -1,4 +1,4 @@
-export default function () {
+export default function navbar(): string {
   return `
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
@@ -15,9 +15,9 @@ export default function () {
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <a class="navbar-brand mt-2 mt-lg-0" href="/">
+          <a class="navbar-brand mt-2 mt-lg-0" href="/" data-navigo>
             <img
-              src="./image/O-removebg-preview.png"
+              src="./src/image/O-removebg-preview.png"
               height="30"
               alt="Otaku Connect"
               loading="lazy"
@@ -25,13 +25,13 @@ export default function () {
           </a>
 
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                Home
-              </a>
-            </li>
+
           </ul>
+          
         </div>
+            <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-primary " href="/register" data-navigo>Sign up</button>
+            </div>
       </div>
     </nav>`;
 }
