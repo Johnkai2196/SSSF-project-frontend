@@ -1,5 +1,5 @@
 export default function registerView(): string {
-  return `
+  const registerHtml = `
 <section class="vh-100">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -46,4 +46,5 @@ export default function registerView(): string {
     </div>
   </div>
 </section>`;
+  return registerHtml;
 }
