@@ -36,7 +36,6 @@ export default function loginView(): string {
       </div>
     </div>
   </div>
-</section>
-<script src="./src/js/login.js"></script>`;
+</section>`;
   return loginHtml;
 }

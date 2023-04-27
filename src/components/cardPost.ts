@@ -29,6 +29,11 @@ export default function cardPosts(post: Post): string {
             <div class="card-body">
               <p class="card-text">${post.text}</p>
             </div>
+              <div class="text-right">
+    <button type="button" class="btn btn-outline-secondary">
+      <i class="fas fa-thumbs-up"></i> Like
+    </button>
+  </div>
           </div>
         </div>
       </div>
