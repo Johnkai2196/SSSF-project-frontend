@@ -2,6 +2,7 @@ import Navigo from "navigo";
 import navbar from "./components/navbar";
 import register from "./views/registerView";
 import login from "./views/loginView";
+import cardPost from "./components/cardPost";
 const router = new Navigo("");
 
 const element = document.querySelector<HTMLDivElement>("#app");
@@ -10,6 +11,7 @@ router.on("/", async () => {
   console.log("home");
   element!.innerHTML = `
     ${navbar()}
+    ${cardPost(1)}
     `;
 });
 router.on("/register", async () => {
@@ -24,5 +26,12 @@ router.on("/login", async () => {
   element!.innerHTML = `
         ${navbar()}
         ${login()}
+        `;
+});
+router.on("/profile/:username", async (data) => {
+  console.log("profile" + data?.data?.username);
+  element!.innerHTML = `
+        ${navbar()}
+
         `;
 });

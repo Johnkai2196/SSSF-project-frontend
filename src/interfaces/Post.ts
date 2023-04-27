@@ -7,5 +7,7 @@ interface Post {
   image?: string;
   likes?: number;
   tags?: string[];
+  profilePicture?: string;
+  username?: string;
 }
 export type { Post };

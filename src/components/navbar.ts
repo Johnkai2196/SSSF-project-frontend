@@ -1,9 +1,9 @@
 import { User } from "../interfaces/User";
-const uploadUrl = import.meta.env.VITE_UPLOAD_URL;
+const fileUrl = import.meta.env.VITE_FILE_URL;
 export default function navbar(user?: User): string {
-  const image = uploadUrl + user?.profilePicture;
+  const image = fileUrl + user?.profilePicture;
   const navHtml = `
-  <nav class="navbar navbar-expand-lg navbar-light bg-light  mb-4">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light  fixed-top" >
     <div class="container-fluid">
       <button
         class="navbar-toggler"
@@ -34,9 +34,17 @@ export default function navbar(user?: User): string {
         
       </div>
       <div class="d-flex align-items-center">
+      
         ${
           user
-            ? `<a>${user.username}</a>
+            ? `<img
+                    src="./src/image/icons8-plus-+-48.png"
+                    class="rounded-circle mr-2"
+                    height="25"
+                    alt="profile picture"
+                    loading="lazy"
+                  />
+                  <a>${user.username}</a>
               <div class="btn-group">
                 <a
                   id="navbarDropdownMenuAvatar"
@@ -46,11 +54,7 @@ export default function navbar(user?: User): string {
                   class="nav-link dropdown-toggle"
                 >
                   <img
-                    src="´${
-                      !user.profilePicture
-                        ? `https://loremflickr.com/320/240`
-                        : image
-                    }"
+                    src="${image}"
                     class="rounded-circle"
                     height="25"
                     alt="profile picture"
