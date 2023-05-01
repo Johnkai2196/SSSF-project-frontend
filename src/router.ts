@@ -4,6 +4,7 @@ import register from "./views/registerView";
 import login from "./views/loginView";
 import cardPost from "./components/cardPost";
 import profileView from "./views/profileViews";
+import { loginForm } from "./function/login";
 const router = new Navigo("");
 
 const element = document.querySelector<HTMLDivElement>("#app");
@@ -12,7 +13,7 @@ router.on("/", async () => {
   console.log("home");
   element!.innerHTML = `
     ${navbar()}
-    ${cardPost(1)}
+    ${cardPost()}
     `;
 });
 router.on("/register", async () => {
@@ -28,6 +29,8 @@ router.on("/login", async () => {
         ${navbar()}
         ${login()}
         `;
+  const logins = document.querySelector("#login") as HTMLFormElement;
+  logins.addEventListener("submit", loginForm);
 });
 router.on("/profile/:username", async (data) => {
   console.log("profile" + data?.data?.username);

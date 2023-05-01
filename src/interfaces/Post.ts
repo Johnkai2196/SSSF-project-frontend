@@ -8,6 +8,5 @@ interface Post {
   likes?: number;
   tags?: string[];
   profilePicture?: string;
-  username?: string;
 }
 export type { Post };

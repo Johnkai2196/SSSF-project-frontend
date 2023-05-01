@@ -1,6 +1,6 @@
 interface User {
   id?: string;
-  username?: string;
+  user_name?: string;
   token?: string;
   profilePicture?: string;
   bannerPicture?: string;

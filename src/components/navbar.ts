@@ -44,7 +44,7 @@ export default function navbar(user?: User): string {
                     alt="profile picture"
                     loading="lazy"
                   />
-                  <a>${user.username}</a>
+                  <a>${user.user_name}</a>
               <div class="btn-group">
                 <a
                   id="navbarDropdownMenuAvatar"
@@ -63,7 +63,7 @@ export default function navbar(user?: User): string {
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li><a class="dropdown-item" href="#">Setting</a></li>
-                  <li><a class="dropdown-item" href="#">Log out</a></li>
+                  <li><a id="logOut"class="dropdown-item" href="/">Log out</a></li>
                 </ul>
               </div>`
             : `<a href="/register" class="btn btn-primary" data-navigo>Sign up</a>`

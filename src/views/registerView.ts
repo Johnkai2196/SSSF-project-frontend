@@ -1,5 +1,6 @@
 export default function registerView(): string {
   const registerHtml = `
+<div class="container" style="margin-top: 75px;">
 <section class="vh-100">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -13,19 +14,19 @@ export default function registerView(): string {
                   <form>
                     <div class="form-outline mb-4">
                       <label for="youInputUserName">Username</label>
-                      <input type="text" id="youInputUserName" class="form-control" placeholder="username" />
+                      <input type="text" id="youInputUserName" class="form-control" placeholder="Username" required/>
                     </div>
                     <div class="form-outline mb-4">
                      <label for="yourInputEmail">Email</label>
-                      <input type="email" id="yourInputEmail" class="form-control" placeholder="email" />
+                      <input type="email" id="yourInputEmail" class="form-control" placeholder="Email" required/>
                     </div>
                     <div class="form-outline mb-4">       
                         <label  for="yourInputPassword">Password</label>
-                        <input type="password" id="yourInputPassword" class="form-control" placeholder="Password" />
+                        <input type="password" id="yourInputPassword" class="form-control" placeholder="Password" required/>
                     </div>
                     <div class="form-outline mb-4">
                     <label " for="yourInputPasswordRepeat">Repeat your password</label>
-                      <input type="password" id="yourInputPasswordRepeat" class="form-control" placeholder="Re-enter password" />
+                      <input type="password" id="yourInputPasswordRepeat" class="form-control" placeholder="Re-enter password" required/>
                       
                     </div>
                     <div class="d-flex justify-content-center">
@@ -45,6 +46,7 @@ export default function registerView(): string {
       </div>
     </div>
   </div>
-</section>`;
+</section>
+</div>`;
   return registerHtml;
 }
