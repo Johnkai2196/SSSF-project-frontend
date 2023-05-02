@@ -11,23 +11,23 @@ export default function registerView(): string {
               <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
                 <div class="form-container">
-                  <form>
+                  <form id=register>
                     <div class="form-outline mb-4">
                       <label for="youInputUserName">Username</label>
-                      <input type="text" id="youInputUserName" class="form-control" placeholder="Username" required/>
+                      <input type="text" id="username" class="form-control" placeholder="Username" required/>
                     </div>
                     <div class="form-outline mb-4">
                      <label for="yourInputEmail">Email</label>
-                      <input type="email" id="yourInputEmail" class="form-control" placeholder="Email" required/>
+                      <input type="email" id="email" class="form-control" placeholder="Email" required/>
                     </div>
                     <div class="form-outline mb-4">       
                         <label  for="yourInputPassword">Password</label>
-                        <input type="password" id="yourInputPassword" class="form-control" placeholder="Password" required/>
+                        <input type="password" id="password" class="form-control" placeholder="Password" required/>
                     </div>
                     <div class="form-outline mb-4">
                     <label " for="yourInputPasswordRepeat">Repeat your password</label>
-                      <input type="password" id="yourInputPasswordRepeat" class="form-control" placeholder="Re-enter password" required/>
-                      
+                      <input type="password" id="passwordRepeat" class="form-control" placeholder="Re-enter password" required/>
+                        <p id="passwordMatchError" class="text-danger"></p>
                     </div>
                     <div class="d-flex justify-content-center">
                       <button type="submit" class="btn btn-success btn-block btn-lg text-body">Register</button>

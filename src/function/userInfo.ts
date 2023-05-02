@@ -1,8 +1,8 @@
 import { doGraphQLFetch } from "../graphql/fetch";
 
-export async function getUserInfo(token: string) {
+export async function getUserInfo(token: string): Promise<void> {
   try {
-    const loginData = (await doGraphQLFetch(apiURL, getUserInfo, {
+    const loginData = (await doGraphQLFetch(apiURL, register, {
       token,
     })) as LoginMessageResponse;
     console.log(loginData.login.token!);

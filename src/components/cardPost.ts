@@ -9,7 +9,7 @@ export default function cardPosts(post: Post): string {
           <div class="card">
             <div class="card-header">
               <a href="/profile/${
-                post.user?.username
+                post.user?.user_name
               }"  class="nav-link disabled" data-navigo>
                 <img
                   src="${image}"
@@ -18,7 +18,7 @@ export default function cardPosts(post: Post): string {
                   alt="profile picture"
                   loading="lazy"
                 />
-              ${post.user?.username} 
+              ${post.user?.user_name} 
               </a>
             </div>
             ${

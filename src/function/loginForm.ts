@@ -3,9 +3,9 @@ import { login } from "../graphql/queries";
 import { Credentials } from "../interfaces/Credentials";
 import LoginMessageResponse from "../interfaces/LoginMessageResponse";
 
+const apiURL = import.meta.env.VITE_API_URL;
 export async function loginForm(event: Event): Promise<void> {
   event.preventDefault();
-  const apiURL = import.meta.env.VITE_API_URL;
 
   const username = document.querySelector("#username") as HTMLInputElement;
   const password = document.querySelector("#password") as HTMLInputElement;

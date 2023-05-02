@@ -1,7 +1,7 @@
 import cardPost from "./components/cardPost";
 import navbar from "./components/navbar";
 import { logOut } from "./function/logOut";
-import { loginForm } from "./function/login";
+import { loginForm } from "./function/loginForm";
 import { doGraphQLFetch } from "./graphql/fetch";
 import { checkToken } from "./graphql/queries";
 import { User } from "./interfaces/User";
@@ -13,10 +13,6 @@ let user: User = {};
 /*${posts.foreach((post) => cardPost(post))}*/
 // check token
 const element = document.querySelector<HTMLDivElement>("#app");
-
-element!.innerHTML = `
-${navbar()}
-`;
 const token = localStorage.getItem("token");
 if (token !== null) {
   try {
@@ -34,4 +30,8 @@ if (token !== null) {
   } catch (error) {
     console.log(error);
   }
+} else {
+  element!.innerHTML = `
+${navbar()}
+`;
 }

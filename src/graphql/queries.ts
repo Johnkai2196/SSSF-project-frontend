@@ -13,8 +13,9 @@ mutation Mutation($credentials: Credentials!) {
     }
   }
 } `;
-const register = `mutation Mutation($user: UserInput!) {
+const register = `mutation Register($user: UserInput!) {
   register(user: $user) {
+    token
     message
     user {
       id
@@ -24,7 +25,7 @@ const register = `mutation Mutation($user: UserInput!) {
       bannerPicture
       bio
     }
-  }
+  } 
 }`;
 const getUsers = `query Query {
   users {

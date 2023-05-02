@@ -4,7 +4,8 @@ import register from "./views/registerView";
 import login from "./views/loginView";
 import cardPost from "./components/cardPost";
 import profileView from "./views/profileViews";
-import { loginForm } from "./function/login";
+import { loginForm } from "./function/loginForm";
+import { registerForm } from "./function/registerForm";
 const router = new Navigo("");
 
 const element = document.querySelector<HTMLDivElement>("#app");
@@ -22,6 +23,22 @@ router.on("/register", async () => {
         ${navbar()}
         ${register()}
         `;
+  const password = document.querySelector("#password") as HTMLInputElement;
+  const password2 = document.querySelector(
+    "#passwordRepeat"
+  ) as HTMLInputElement;
+  const passwordMatchError = document.getElementById(
+    "passwordMatchError"
+  ) as HTMLElement;
+  password2.addEventListener("input", async () => {
+    if (password.value !== password2.value) {
+      passwordMatchError.innerText = "Passwords do not match";
+    } else {
+      passwordMatchError.innerText = "";
+      const registers = document.querySelector("#register") as HTMLFormElement;
+      registers.addEventListener("submit", registerForm);
+    }
+  });
 });
 router.on("/login", async () => {
   console.log("login");
