@@ -1,16 +1,23 @@
-export default function profileView(username: unknown): string {
+import { User } from "../interfaces/User";
+const fileUrl = import.meta.env.VITE_FILE_URL;
+export default function profileView(user: any): string {
+  console.log(user.profilePicture);
+
+  const image = fileUrl + user.profilePicture;
+  console.log(image);
+
   const profileHtml = `
    <div class="container" style="margin-top: 75px;">
 <div class="container">
 <div class="jumbotron" style="background-color:#CFD8DC;">
     <div class="row">
         <div class="col-md-3">
-            <img src="https://via.placeholder.com/150" alt="Profile Picture" class="img-fluid rounded-circle">
+            <img src="${image}" alt="Profile Picture" class="img-fluid rounded-circle">
         </div>
         <div class="col-md-9">
-            <h1 class="display-4">My Profile Page</h1>
+            <h1 class="display-4">${user.user_name}</h1>
             <hr class="my-4">
-            <p class="lead">Welcome to my profile page!</p>
+            <p class="lead">${user.bio}</p>
         </div>
     </div>
 </div>

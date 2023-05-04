@@ -11,10 +11,14 @@ import { initLogOutEventListeners } from "./function/logOut";
 import { user } from "./main";
 import {
   getAllPost,
+  getPostsByUserIds,
   initAddPosts,
   initDeleteAndModifyListener,
+  initModPosts,
 } from "./function/post";
 import { Post } from "./interfaces/Post";
+import { getUserByIds } from "./function/user";
+import { getPostsByUserId } from "./graphql/queries";
 const router = new Navigo("/");
 
 const element = document.querySelector<HTMLDivElement>("#app");
@@ -28,6 +32,7 @@ router
   .on("/", async () => {
     console.log("home");
     const allPost = await getAllPost();
+    console.log(allPost);
 
     element!.innerHTML = `
 ${navbar(userData)}
@@ -63,15 +68,27 @@ ${allPost
     initLoginEventListeners();
   });
 router
-  .on("/profile/:username", async (data) => {
-    console.log("profile" + data?.data?.username);
+  .on("/profile/:id", async (data) => {
+    const profileData = await getUserByIds(data?.data?.id!);
+
+    const usersPost = await getPostsByUserIds(data?.data?.id!);
+
     element!.innerHTML = `
         ${navbar(userData)}
-        //fetch user by username
-        ${profileView(data?.data?.username)}
+        ${profileView(profileData.userById)}
+<div class="container" style="margin-top: 75px;">
+${usersPost
+  .reverse()
+  .map((post: Post) => cardPost(post))
+  .forEach((post: Post) => initDeleteAndModifyListener(post))
+  .join("")}
+</div>
+
         `;
+
     if (userData) {
       initLogOutEventListeners();
+      initAddPosts();
     }
   })
   .resolve();

@@ -46,6 +46,7 @@ const getUserById = `query Query($userByIdId: ID!) {
     profilePicture
     bannerPicture
     bio
+    role
   }
 }`;
 const updateUser = `mutation Mutation($user: UserModify!) {
@@ -154,8 +155,8 @@ const postById = `query Query($postByIdId: ID!) {
     likes
   }
 }`;
-const getPostsByUserId = `query Query($userId: ID!) {
-  postsByUser(userId: $userId) {
+const getPostsByUserId = `query Query($postsByUserId: ID!) {
+  postsByUser(id: $postsByUserId) {
     id
     text
     user {
@@ -165,6 +166,7 @@ const getPostsByUserId = `query Query($userId: ID!) {
       profilePicture
       bannerPicture
       bio
+      role
     }
     image
     dateAdded
@@ -188,7 +190,6 @@ const createPost = `mutation Mutation($text: String!, $image: String) {
     likes
   }
 }`;
-// issues still with this one
 const updatePost = `mutation Mutation($updatePostId: ID!, $post: PostModify!) {
   updatePost(id: $updatePostId, post: $post) {
     id
@@ -237,14 +238,22 @@ const deletePostAsAdmin = `mutation DeletePost($deletePostAsAdminId: ID!) {
     dateAdded
   }
 }`;
-const updatePostAsAdmin = `mutation DeletePost($updatePostAsAdminId: ID!, $post: PostModify!) {
+const updatePostAsAdmin = `mutation Mutation($updatePostAsAdminId: ID!, $post: PostModify!) {
   updatePostAsAdmin(id: $updatePostAsAdminId, post: $post) {
     id
-    user_name
-    email
-    profilePicture
-    bannerPicture
-    bio
+    text
+    user {
+      id
+      user_name
+      email
+      profilePicture
+      bannerPicture
+      bio
+      role
+    }
+    image
+    dateAdded
+    likes
   }
 }`;
 export {

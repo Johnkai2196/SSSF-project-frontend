@@ -1,6 +1,3 @@
-import { initLogOutEventListeners, logOut } from "./function/logOut";
-import { initLoginEventListeners } from "./function/loginForm";
-import { initRegisterEventListeners } from "./function/registerForm";
 import { doGraphQLFetch } from "./graphql/fetch";
 import { checkToken } from "./graphql/queries";
 import { User } from "./interfaces/User";
@@ -16,6 +13,7 @@ if (token !== null) {
       console.log("token valid");
       isTokenValid.checkToken.user;
       user = isTokenValid.checkToken.user;
+      console.log(1);
     }
   } catch (error) {
     console.log(error);

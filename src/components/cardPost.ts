@@ -18,7 +18,7 @@ export default function cardPosts(post: Post): string {
         <div class="d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-center">
             <a href="/profile/${
-              post.user?.user_name
+              post.user?.id
             }" class="nav-link disabled" data-navigo>
               <img src="${image}" class="rounded-circle" height="25" alt="profile picture" loading="lazy"/>
               ${post.user?.user_name}
@@ -36,7 +36,7 @@ export default function cardPosts(post: Post): string {
                     style="cursor: pointer; width: 20px; height: 20px;">
                   </a>
                   <ul id="test" class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                    <li><a id="${modifyId}" style="cursor: pointer" class="dropdown-item">Modify</a></li>
+                    <li><a id="${modifyId}" data-toggle="modal" data-target="#modifyModal" style="cursor: pointer" class="dropdown-item">Modify</a></li>
                     <li><a id="${deleteId}" style="cursor: pointer" class="dropdown-item">Delete</a></li>
                   </ul>
                 </div>`
@@ -58,6 +58,37 @@ export default function cardPosts(post: Post): string {
             post.likes
           }</button>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Post</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="add-post">
+          <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" class="form-control" id="modImage">
+          </div>
+          <div class="mb-3">
+            <label for="text" class="form-label">Text</label>
+            <textarea class="form-control" id="modText" rows="3" placeholder="Add text" required></textarea>
+            <p id="modTextError" class="text-danger"></p>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="submitModify" type="submit" class="btn btn-primary">Modify</button>
       </div>
     </div>
   </div>

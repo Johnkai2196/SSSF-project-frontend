@@ -5,7 +5,7 @@ import LoginMessageResponse from "../interfaces/LoginMessageResponse";
 import router from "../router";
 
 const apiURL = import.meta.env.VITE_API_URL;
-export async function loginForm(event: Event): Promise<void> {
+export async function loginForm(event: Event) {
   event.preventDefault();
 
   const username = document.querySelector("#username") as HTMLInputElement;
@@ -30,8 +30,6 @@ export async function loginForm(event: Event): Promise<void> {
       return;
     }
     localStorage.setItem("token", loginData.login.token!);
-    console.log(loginData.login.token!);
-    console.log(2);
 
     window.location.href = "/";
   } catch (error) {
