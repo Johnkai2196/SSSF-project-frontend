@@ -30,7 +30,7 @@ export default function registerView(): string {
                         <p id="passwordMatchError" class="text-danger"></p>
                     </div>
                     <div class="d-flex justify-content-center">
-                      <button type="submit" class="btn btn-success btn-block btn-lg text-body">Register</button>
+                      <button id="registerButton" type="submit" class="btn btn-success btn-block btn-lg text-body">Register</button>
                     </div>
                     <p class="text-center text-muted mt-3 mb-0">Already have an account? <a href="/login" data-navigo
                         class="fw-bold text-body"><u>Login</u></a></p>

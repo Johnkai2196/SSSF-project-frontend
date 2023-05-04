@@ -35,6 +35,7 @@ const getUsers = `query Query {
     profilePicture
     bannerPicture
     bio
+    role
   }
 }`;
 const getUserById = `query Query($userByIdId: ID!) {
@@ -88,7 +89,6 @@ const deleteUserAsAdmin = `mutation Mutation($deleteUserAsAdminId: ID!) {
     }
   }
 }`;
-//still issues with this one
 const updateUserAsAdmin = `mutation Mutation($updateUserAsAdminId: ID!, $user: UserModify!) {
   updateUserAsAdmin(id: $updateUserAsAdminId, user: $user) {
     token
@@ -115,6 +115,7 @@ query Query {
       profilePicture
       bannerPicture
       bio
+      role
     }
   }
 }`;
@@ -133,6 +134,7 @@ query Query {
     }
     image
     dateAdded
+    likes
   }
 }`;
 const postById = `query Query($postByIdId: ID!) {
@@ -149,6 +151,7 @@ const postById = `query Query($postByIdId: ID!) {
     }
     image
     dateAdded
+    likes
   }
 }`;
 const getPostsByUserId = `query Query($userId: ID!) {
@@ -165,6 +168,7 @@ const getPostsByUserId = `query Query($userId: ID!) {
     }
     image
     dateAdded
+    likes
   }
 }`;
 const createPost = `mutation Mutation($text: String!, $image: String) {
@@ -181,6 +185,7 @@ const createPost = `mutation Mutation($text: String!, $image: String) {
     }
     image
     dateAdded
+    likes
   }
 }`;
 // issues still with this one

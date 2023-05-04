@@ -27,3 +27,30 @@ export async function registerForm(event: Event): Promise<void> {
     console.log(error);
   }
 }
+
+export function initRegisterEventListeners(): void {
+  const password = document.querySelector("#password") as HTMLInputElement;
+  const password2 = document.querySelector(
+    "#passwordRepeat"
+  ) as HTMLInputElement;
+  const passwordMatchError = document.getElementById(
+    "passwordMatchError"
+  ) as HTMLElement;
+  password2.addEventListener("input", async () => {
+    if (password.value !== password2.value) {
+      passwordMatchError.innerText = "Passwords do not match";
+    } else {
+      passwordMatchError.innerText = "";
+      const registers = document.querySelector("#register") as HTMLFormElement;
+      const button = document.querySelector(
+        "#registerButton"
+      ) as HTMLButtonElement;
+      registers.addEventListener("submit", (event) => {
+        button.disabled = true;
+        button.innerHTML =
+          '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...';
+        registerForm(event);
+      });
+    }
+  });
+}

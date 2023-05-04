@@ -19,9 +19,10 @@ export default function loginView(): string {
                       <div class="form-outline mb-4">       
                           <label  for="yourInputPassword">Password</label>
                           <input type="password" id="password" class="form-control" placeholder="Password" required/>
+                          <p id="Error" class="text-danger"></p>
                       </div>
                       <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-success btn-block btn-lg text-body">Login</button>
+                        <button  id="loginButton" type="submit" class="btn btn-success btn-block btn-lg text-body">Login</button>
                       </div>
                       <p class="text-center text-muted mt-3 mb-0">Excited to get started? <a href="/register" data-navigo
                           class="fw-bold text-body"><u>Create an account</u></a></p>
