@@ -80,12 +80,13 @@ router
 ${usersPost
   .reverse()
   .map((post: Post) => cardPost(post))
-  .forEach((post: Post) => initDeleteAndModifyListener(post))
   .join("")}
 </div>
 
         `;
-
+    usersPost
+      .reverse()
+      .forEach((post: Post) => initDeleteAndModifyListener(post));
     if (userData) {
       initLogOutEventListeners();
       initAddPosts();
