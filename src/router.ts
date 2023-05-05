@@ -16,34 +16,45 @@ import {
   initDeleteAndModifyListener,
 } from "./function/post";
 import { Post } from "./interfaces/Post";
-import { getUserByIds, initModUser } from "./function/user";
+import {
+  getAllUser,
+  getUserByIds,
+  initDeleteButtonsAsAdmin,
+  initModUser,
+} from "./function/user";
+import cardUser from "./components/cardUser";
 const router = new Navigo("/");
 
 const element = document.querySelector<HTMLDivElement>("#app");
 let userData: User | null;
+
 if (!user.user_name) {
   userData = null;
 } else {
   userData = user;
 }
+
 router
   .on("/", async () => {
     console.log("home");
+
     const allPost = await getAllPost();
     console.log(allPost);
 
     element!.innerHTML = `
-${navbar(userData)}
-<div class="container" style="margin-top: 75px;">
-${allPost
-  .reverse()
-  .map((post: Post) => cardPost(post))
-  .join("")}
-</div>
-`;
+      ${navbar(userData)}
+      <div class="container" style="margin-top: 75px;">
+        ${allPost
+          .reverse()
+          .map((post: Post) => cardPost(post))
+          .join("")}
+      </div>
+    `;
+
     allPost
       .reverse()
       .forEach((post: Post) => initDeleteAndModifyListener(post));
+
     if (userData) {
       initLogOutEventListeners();
       initAddPosts();
@@ -52,44 +63,69 @@ ${allPost
   })
   .on("/register", async () => {
     console.log("register");
+
     element!.innerHTML = `
-        ${navbar()}
-        ${register()}
-        `;
+      ${navbar()}
+      ${register()}
+    `;
+
     initRegisterEventListeners();
   })
   .on("/login", async () => {
     console.log("login");
+
     element!.innerHTML = `
-        ${navbar()}
-        ${login()}
-        `;
+      ${navbar()}
+      ${login()}
+    `;
+
     initLoginEventListeners();
   })
   .on("/profile/:id", async (data) => {
     const profileData = await getUserByIds(data?.data?.id!);
-
     const usersPost = await getPostsByUserIds(data?.data?.id!);
 
     element!.innerHTML = `
-        ${navbar(userData)}
-        ${profileView(profileData.userById)}
-<div class="container" style="margin-top: 75px;">
-${usersPost
-  .reverse()
-  .map((post: Post) => cardPost(post))
-  .join("")}
-</div>
+      ${navbar(userData)}
+      ${profileView(profileData.userById)}
+      <div class="container" style="margin-top: 75px;">
+        ${usersPost
+          .reverse()
+          .map((post: Post) => cardPost(post))
+          .join("")}
+      </div>
+    `;
 
-        `;
     usersPost
       .reverse()
       .forEach((post: Post) => initDeleteAndModifyListener(post));
+
     if (userData) {
       initLogOutEventListeners();
       initAddPosts();
       initModUser();
     }
   })
+  .on("/admin", async () => {
+    const usersData = await getAllUser();
+
+    element!.innerHTML = `
+      ${navbar(userData)}
+      <div class="container" style="margin-top: 75px;">
+      ${usersData
+        .reverse()
+        .map((user: User) => cardUser(user))
+        .join("")}}
+      </div>
+      `;
+    usersData.reverse().forEach((user: User) => initDeleteButtonsAsAdmin(user));
+    if (userData) {
+      initLogOutEventListeners();
+      initAddPosts();
+      initModUser();
+    }
+  })
+
   .resolve();
+
 export default router;

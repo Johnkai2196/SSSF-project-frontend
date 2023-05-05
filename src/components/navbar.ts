@@ -77,7 +77,7 @@ export default function navbar(user?: any): string {
                   </li>
                   ${
                     user.role === "admin"
-                      ? `<li><a href="/admin" style="cursor: pointer" class="dropdown-item">Admin</a></li>`
+                      ? `<li><a href="/admin" style="cursor: pointer" class="dropdown-item" data-navigo>Admin</a></li>`
                       : ""
                   }
                   <li>
@@ -120,8 +120,9 @@ export default function navbar(user?: any): string {
     </div>
   </div>
 </div>
-
-<div class="modal fade" id="settingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ ${
+   user
+     ? `<div class="modal fade" id="settingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -138,16 +139,12 @@ export default function navbar(user?: any): string {
           </div>
           <div class="mb-3">
             <label for="text" class="form-label">Username</label>
-            <input class="form-control" id="userName" value="${
-              user.user_name
-            }" required>
+            <input class="form-control" id="userName" value="${user.user_name}" required>
             <p id="settingTextErrorUsername" class="text-danger"></p>
           </div>
           <div class="mb-3">
             <label for="text" class="form-label">Email</label>
-            <input class="form-control" id="email" value="${
-              user.email
-            }" required>
+            <input class="form-control" id="email" value="${user.email}" required>
             <p id="settingTextErrorEmail" class="text-danger"></p>
           </div>
           <div class="mb-3">
@@ -164,8 +161,9 @@ export default function navbar(user?: any): string {
     </div>
   </div>
 </div>
-
-`;
+`
+     : ""
+ }`;
   console.log(user);
 
   return navHtml;

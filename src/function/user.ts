@@ -1,10 +1,24 @@
 import { doGraphQLFetch } from "../graphql/fetch";
-import { getUserById, updateUser } from "../graphql/queries";
+import {
+  deleteUserAsAdmin,
+  getUserById,
+  getUsers,
+  updateUser,
+} from "../graphql/queries";
 import { UploadResponse } from "../interfaces/UploadResponse";
+import { User } from "../interfaces/User";
 
 const apiURL = import.meta.env.VITE_API_URL;
 const uploadURL = import.meta.env.VITE_UPLOAD_URL;
+export async function getAllUser() {
+  try {
+    const userData = await doGraphQLFetch(apiURL, getUsers, {});
 
+    return userData.users;
+  } catch (error) {
+    console.log(error);
+  }
+}
 export async function getUserByIds(id: string) {
   try {
     console.log("get", id);
@@ -36,6 +50,36 @@ export async function modifyUser(user: any) {
     console.log(error);
   }
 }
+export async function deletePostsAsAdmin(id: string) {
+  try {
+    const deleteData = await doGraphQLFetch(
+      apiURL,
+      deleteUserAsAdmin,
+      {
+        deleteUserAsAdminId: id,
+      },
+      localStorage.getItem("token")!
+    );
+    console.log(deleteData);
+
+    return deleteData;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function initDeleteButtonsAsAdmin(user: User): void {
+  const deleteButton = document.querySelector(
+    "#delete" + user.id
+  ) as HTMLElement;
+  deleteButton.addEventListener("click", async (event) => {
+    event.preventDefault();
+    if (user.id === undefined) return;
+    const deleteData = await deletePostsAsAdmin(user.id);
+    console.log(deleteData);
+    window.location.href = "/admin";
+  });
+}
 
 export function initModUser(): void {
   const button = document.querySelector("#submitSetting") as HTMLButtonElement;
@@ -52,7 +96,6 @@ export function initModUser(): void {
   const bioError = document.querySelector(
     "#settingTextErrorBio"
   ) as HTMLElement;
-  console.log(emailError);
 
   button.addEventListener("click", async () => {
     let user = {};
@@ -95,8 +138,10 @@ export function initModUser(): void {
       bioError.innerText = "Please enter a bio";
       return;
     }
-
-    const userData = await modifyUser(user);
+    button.disabled = true;
+    button.innerHTML =
+      '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...';
+    await modifyUser(user);
     window.location.href = "/";
   });
 }

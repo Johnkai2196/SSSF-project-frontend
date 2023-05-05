@@ -10,7 +10,10 @@ export async function registerForm(event: Event): Promise<void> {
   const username = document.querySelector("#username") as HTMLInputElement;
   const email = document.querySelector("#email") as HTMLInputElement;
   const password = document.querySelector("#password") as HTMLInputElement;
-
+  const button = document.querySelector("#registerButton") as HTMLButtonElement;
+  const passwordMatchError = document.getElementById(
+    "passwordMatchError"
+  ) as HTMLElement;
   const user: RegisterData = {
     user_name: username.value,
     email: email.value,
@@ -21,6 +24,14 @@ export async function registerForm(event: Event): Promise<void> {
     const registerData = (await doGraphQLFetch(apiURL, register, {
       user,
     })) as LoginMessageResponse;
+    console.log(registerData);
+    if (registerData.register === null) {
+      console.log("registerData is null");
+
+      passwordMatchError.innerText = "username or email already exists";
+      button.disabled = false;
+      button.innerHTML = "Register";
+    }
     localStorage.setItem("token", registerData.register.token!);
     window.location.href = "/";
   } catch (error) {

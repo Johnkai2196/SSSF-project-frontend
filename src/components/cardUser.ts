@@ -1,18 +1,20 @@
-import { User } from "../interfaces/User";
-
-export default function cardUser(user: User): string {
+export default function cardUser(user: any): string {
   const fileUrl = import.meta.env.VITE_FILE_URL;
   const image = fileUrl + user.profilePicture;
-  console.log(user);
+  console.log("image", user.id);
 
   const cardUser = `
-  <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
+<div class="d-flex justify-content-center align-items-center">
+    <div class="col-md-6 mb-3">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="${image}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">${user.user_name}</h5>
+                <p class="card-text">${user.bio}</p>
+                <a href="" id="delete${user.id}" class="btn btn-primary btn-lg btn-block">Delete user</a>
+            </div>
+        </div>  
+    </div>
 </div>`;
   return cardUser;
 }
