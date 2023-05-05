@@ -14,11 +14,9 @@ import {
   getPostsByUserIds,
   initAddPosts,
   initDeleteAndModifyListener,
-  initModPosts,
 } from "./function/post";
 import { Post } from "./interfaces/Post";
-import { getUserByIds } from "./function/user";
-import { getPostsByUserId } from "./graphql/queries";
+import { getUserByIds, initModUser } from "./function/user";
 const router = new Navigo("/");
 
 const element = document.querySelector<HTMLDivElement>("#app");
@@ -49,6 +47,7 @@ ${allPost
     if (userData) {
       initLogOutEventListeners();
       initAddPosts();
+      initModUser();
     }
   })
   .on("/register", async () => {
@@ -66,8 +65,7 @@ ${allPost
         ${login()}
         `;
     initLoginEventListeners();
-  });
-router
+  })
   .on("/profile/:id", async (data) => {
     const profileData = await getUserByIds(data?.data?.id!);
 
@@ -90,6 +88,7 @@ ${usersPost
     if (userData) {
       initLogOutEventListeners();
       initAddPosts();
+      initModUser();
     }
   })
   .resolve();
