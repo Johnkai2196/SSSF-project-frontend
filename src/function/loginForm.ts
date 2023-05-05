@@ -2,7 +2,6 @@ import { doGraphQLFetch } from "../graphql/fetch";
 import { login } from "../graphql/queries";
 import { Credentials } from "../interfaces/Credentials";
 import LoginMessageResponse from "../interfaces/LoginMessageResponse";
-import router from "../router";
 
 const apiURL = import.meta.env.VITE_API_URL;
 export async function loginForm(event: Event) {
