@@ -1,12 +1,9 @@
-const path = require("path");
+import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default {
-  root: path.resolve(__dirname, "./"),
-  build: {
-    outDir: "../dist",
-  },
-  server: {
-    port: 8080,
-    hot: true,
-  },
+  plugins: [
+    viteStaticCopy({
+      targets: [{ src: "node_modules/leaflet/dist/images/*", dest: "./" }],
+    }),
+  ],
 };
