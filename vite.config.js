@@ -1,9 +1,10 @@
-import { viteStaticCopy } from "vite-plugin-static-copy";
+import { resolve } from "path";
+import handlebars from "vite-plugin-handlebars";
 
 export default {
   plugins: [
-    viteStaticCopy({
-      targets: [{ src: "node_modules/leaflet/dist/images/*", dest: "./" }],
+    handlebars({
+      partialDirectory: resolve(__dirname, "partials"),
     }),
   ],
 };
