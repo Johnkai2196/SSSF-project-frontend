@@ -13,3 +13,4 @@ To get started with SSSF-project-project-graphql, follow these steps:
 
 ## Fixes done after 5.5.2023 presentation
 Deleting user profile
+Creating and Deleteting likes
