@@ -24,6 +24,7 @@ import {
   initModUser,
 } from "./function/user";
 import cardUser from "./components/cardUser";
+import { initLikePost } from "./function/likes";
 const router = new Navigo("/");
 
 const element = document.querySelector<HTMLDivElement>("#app");
@@ -51,15 +52,16 @@ router
       </div>
     `;
 
-    allPost
-      .reverse()
-      .forEach((post: Post) => initDeleteAndModifyListener(post));
+    allPost.reverse().forEach((post: Post) => {
+      initDeleteAndModifyListener(post);
+      initLikePost(post);
+    });
 
     if (userData) {
       initLogOutEventListeners();
       initAddPosts();
       initModUser();
-      initDeleteUserButton(userData);
+      initDeleteUserButton();
     }
   })
   .on("/register", async () => {
@@ -97,9 +99,10 @@ router
       </div>
     `;
 
-    usersPost
-      .reverse()
-      .forEach((post: Post) => initDeleteAndModifyListener(post));
+    usersPost.reverse().forEach((post: Post) => {
+      initDeleteAndModifyListener(post);
+      initLikePost(post);
+    });
 
     if (userData) {
       initLogOutEventListeners();

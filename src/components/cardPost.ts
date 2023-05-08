@@ -54,9 +54,11 @@ export default function cardPosts(post: Post): string {
       </div>
       <div class="text-right">
         <div>
-          <button class="btn btn-primary d-inline-flex">Likes ${
-            post.likes
-          }</button>
+          <button id="like${
+            post.id
+          }"class="btn btn-primary btn-lg btn-block">Likes ${
+    post.likes
+  }</button>
         </div>
       </div>
     </div>

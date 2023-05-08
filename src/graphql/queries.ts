@@ -256,6 +256,28 @@ const updatePostAsAdmin = `mutation Mutation($updatePostAsAdminId: ID!, $post: P
     likes
   }
 }`;
+const createLike = `mutation Mutation($post: ID!) {
+  createLike(post: $post) {
+    user {
+      id
+    }
+    id
+    post {
+      id
+    }
+  }
+}`;
+const deleteLike = `mutation Mutation($deleteLikeId: ID!) {
+  deleteLike(id: $deleteLikeId) {
+    user {
+      id
+    }
+    post {
+      id
+    }
+    id
+  }
+}`;
 export {
   login,
   register,
@@ -274,4 +296,6 @@ export {
   deletePost,
   deletePostAsAdmin,
   updatePostAsAdmin,
+  createLike,
+  deleteLike,
 };
