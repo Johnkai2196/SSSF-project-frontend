@@ -10,3 +10,6 @@ To get started with SSSF-project-project-graphql, follow these steps:
 2. Create a `.env` file based on the `.env.example` file in the root directory of the project. This file contains environment variables needed to run the application.
 3. Install dependencies by running `npm i` in your terminal or command prompt.
 4. Start the development server by running `npm start` in your terminal or command prompt.
+
+## Fixes done after 5.5.2023 presentation
+Deleting user profile
