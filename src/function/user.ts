@@ -1,5 +1,6 @@
 import { doGraphQLFetch } from "../graphql/fetch";
 import {
+  deleteUser,
   deleteUserAsAdmin,
   getUserById,
   getUsers,
@@ -50,7 +51,7 @@ export async function modifyUser(user: any) {
     console.log(error);
   }
 }
-export async function deletePostsAsAdmin(id: string) {
+export async function deleteUsersAsAdmin(id: string) {
   try {
     const deleteData = await doGraphQLFetch(
       apiURL,
@@ -67,6 +68,20 @@ export async function deletePostsAsAdmin(id: string) {
     console.log(error);
   }
 }
+export async function deleteUsers() {
+  try {
+    const deleteData = await doGraphQLFetch(
+      apiURL,
+      deleteUser,
+      {},
+      localStorage.getItem("token")!
+    );
+    console.log(deleteData);
+    window.location.href = "/";
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export function initDeleteButtonsAsAdmin(user: User): void {
   const deleteButton = document.querySelector(
@@ -75,9 +90,16 @@ export function initDeleteButtonsAsAdmin(user: User): void {
   deleteButton.addEventListener("click", async (event) => {
     event.preventDefault();
     if (user.id === undefined) return;
-    const deleteData = await deletePostsAsAdmin(user.id);
+    const deleteData = await deleteUsersAsAdmin(user.id);
     console.log(deleteData);
     window.location.href = "/admin";
+  });
+}
+export function initDeleteUserButton(): void {
+  const deleteButton = document.querySelector("#deleteUser") as HTMLElement;
+  deleteButton.addEventListener("click", async (event) => {
+    event.preventDefault();
+    await deleteUsers();
   });
 }
 

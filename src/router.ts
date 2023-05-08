@@ -20,6 +20,7 @@ import {
   getAllUser,
   getUserByIds,
   initDeleteButtonsAsAdmin,
+  initDeleteUserButton,
   initModUser,
 } from "./function/user";
 import cardUser from "./components/cardUser";
@@ -39,7 +40,6 @@ router
     console.log("home");
 
     const allPost = await getAllPost();
-    console.log(allPost);
 
     element!.innerHTML = `
       ${navbar(userData)}
@@ -59,6 +59,7 @@ router
       initLogOutEventListeners();
       initAddPosts();
       initModUser();
+      initDeleteUserButton(userData);
     }
   })
   .on("/register", async () => {
@@ -104,6 +105,7 @@ router
       initLogOutEventListeners();
       initAddPosts();
       initModUser();
+      initDeleteUserButton();
     }
   })
   .on("/admin", async () => {

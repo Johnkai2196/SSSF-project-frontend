@@ -156,6 +156,7 @@ export default function navbar(user?: any): string {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="deleteUser"type="button" class="btn btn-danger">Delete</button>
         <button id="submitSetting" type="submit" class="btn btn-primary">Modify user</button>
       </div>
     </div>

@@ -6,18 +6,13 @@ const apiURL = import.meta.env.VITE_API_URL;
 export let user: User = {};
 const token = localStorage.getItem("token");
 
-(async () => {
-  if (token !== null) {
-    try {
-      const isTokenValid = await doGraphQLFetch(apiURL, checkToken, {}, token);
-      if (isTokenValid.checkToken?.message === "Token is valid") {
-        console.log("token valid");
-        isTokenValid.checkToken.user;
-        user = isTokenValid.checkToken.user;
-        console.log(1);
-      }
-    } catch (error) {
-      console.log(error);
+if (token !== null) {
+  try {
+    const isTokenValid = await doGraphQLFetch(apiURL, checkToken, {}, token);
+    if (isTokenValid.checkToken?.message === "Token is valid") {
+      user = isTokenValid.checkToken.user;
     }
+  } catch (error) {
+    console.log(error);
   }
-})();
+}
