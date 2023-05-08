@@ -24,10 +24,7 @@ export async function registerForm(event: Event): Promise<void> {
     const registerData = (await doGraphQLFetch(apiURL, register, {
       user,
     })) as LoginMessageResponse;
-    console.log(registerData);
     if (registerData.register === null) {
-      console.log("registerData is null");
-
       passwordMatchError.innerText = "username or email already exists";
       button.disabled = false;
       button.innerHTML = "Register";

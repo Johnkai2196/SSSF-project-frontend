@@ -12,7 +12,6 @@ export async function likePosts(post: Post) {
         { post: post.id },
         token
       );
-      console.log("create", likeData);
       if (likeData.createLike) {
         const button = document.querySelector(
           `#like${post.id}`
@@ -38,7 +37,6 @@ export async function unLikePosts(post: Post) {
         { deleteLikeId: post.id },
         token
       );
-      console.log("delete", likeData.deleteLike);
       const button = document.querySelector(
         `#like${post.id}`
       ) as HTMLButtonElement;
@@ -49,7 +47,6 @@ export async function unLikePosts(post: Post) {
       if (!likeData.deleteLike) {
         likePosts(post);
       }
-      console.log("like", post.likes);
     }
   } catch (error) {
     console.log(error);
@@ -57,10 +54,13 @@ export async function unLikePosts(post: Post) {
 }
 export function initLikePost(post: Post): void {
   const button = document.querySelector(`#like${post.id}`) as HTMLButtonElement;
+  const token = localStorage.getItem("token");
+  if (token === null) {
+    button.disabled = true;
+  }
 
   button.addEventListener("click", (event) => {
     event.preventDefault();
-
     likePosts(post);
   });
 }

@@ -1,7 +1,6 @@
 export default function cardUser(user: any): string {
   const fileUrl = import.meta.env.VITE_FILE_URL;
   const image = fileUrl + user.profilePicture;
-  console.log("image", user.id);
 
   const cardUser = `
 <div class="d-flex justify-content-center align-items-center">

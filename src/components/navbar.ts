@@ -165,7 +165,6 @@ export default function navbar(user?: any): string {
 `
      : ""
  }`;
-  console.log(user);
 
   return navHtml;
 }

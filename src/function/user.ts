@@ -22,10 +22,6 @@ export async function getAllUser() {
 }
 export async function getUserByIds(id: string) {
   try {
-    console.log("get", id);
-    console.log(getUserById);
-    console.log(apiURL);
-
     const userData = await doGraphQLFetch(apiURL, getUserById, {
       userByIdId: id,
     });
