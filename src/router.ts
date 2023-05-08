@@ -38,8 +38,6 @@ if (!user.user_name) {
 
 router
   .on("/", async () => {
-    console.log("home");
-
     const allPost = await getAllPost();
 
     element!.innerHTML = `
@@ -65,8 +63,6 @@ router
     }
   })
   .on("/register", async () => {
-    console.log("register");
-
     element!.innerHTML = `
       ${navbar()}
       ${register()}
@@ -75,8 +71,6 @@ router
     initRegisterEventListeners();
   })
   .on("/login", async () => {
-    console.log("login");
-
     element!.innerHTML = `
       ${navbar()}
       ${login()}

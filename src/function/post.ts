@@ -34,8 +34,6 @@ export async function getPostsByUserIds(id: string) {
 }
 export async function deletePosts(id: string) {
   try {
-    console.log("delete", id);
-
     const token = localStorage.getItem("token");
     if (token !== null) {
       const deleteData = await doGraphQLFetch(
@@ -53,8 +51,6 @@ export async function deletePosts(id: string) {
 }
 export async function deletePostsAsAdmin(id: string) {
   try {
-    console.log("delete", id);
-
     const token = localStorage.getItem("token");
     if (token !== null) {
       const deleteData = await doGraphQLFetch(
@@ -103,6 +99,7 @@ export async function addPostForm(event: Event) {
       localStorage.getItem("token")!
     );
     console.log(postData);
+
     window.location.href = "/";
   } catch (error) {
     console.log(error);
@@ -114,8 +111,6 @@ export async function modifyForm(event: Event, id: string) {
 
   event.preventDefault();
   try {
-    console.log("modify", id);
-
     if (image.value !== "") {
       const imageFile = image.files![0];
       const formData = new FormData();
@@ -223,8 +218,6 @@ export function initAddPosts(): void {
   const error = document.querySelector("#textError") as HTMLElement;
 
   button.addEventListener("click", (event) => {
-    console.log(!text.value);
-
     if (text.value === "") {
       error.innerText = "Please enter a text";
     } else {
@@ -241,8 +234,6 @@ export function initModPosts(id: string, role: string): void {
   const error = document.querySelector("#modTextError") as HTMLElement;
 
   button.addEventListener("click", (event) => {
-    console.log(!text.value);
-
     if (text.value === "") {
       error.innerText = "Please enter a text";
     } else {
@@ -266,7 +257,6 @@ export function initDeleteAndModifyListener(post: Post): void {
 
   modify?.addEventListener("click", (event) => {
     event.preventDefault();
-    console.log("modify", post.id);
     if (user.role) {
       initModPosts(post.id, user.role);
     }
