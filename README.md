@@ -12,5 +12,5 @@ To get started with SSSF-project-project-graphql, follow these steps:
 4. Start the development server by running `npm run dev` in your terminal or command prompt.
 
 ## Fixes done after 5.5.2023 presentation
-Deleting user profile
-Creating and Deleteting likes
+- Deleting user profile
+- Creating and Deleteting likes
