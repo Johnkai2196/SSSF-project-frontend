@@ -1,10 +1,7 @@
 const fileUrl = import.meta.env.VITE_FILE_URL;
 export default function profileView(user: any): string {
-  console.log(user.profilePicture);
 
   const image = fileUrl + user.profilePicture;
-  console.log(image);
-
   const profileHtml = `
 <div class="container" style="margin-top: 75px;">
     <div class="container">

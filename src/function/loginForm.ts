@@ -19,7 +19,6 @@ export async function loginForm(event: Event) {
     const loginData = (await doGraphQLFetch(apiURL, login, {
       credentials,
     })) as LoginMessageResponse;
-    console.log(loginData);
 
     if (loginData.login === null) {
       const error = document.querySelector("#Error") as HTMLElement;
